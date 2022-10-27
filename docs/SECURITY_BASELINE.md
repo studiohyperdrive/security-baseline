@@ -71,17 +71,14 @@ Communication over HTTP (or cleartext traffic) should be avoided and disabled, H
 
 The header consists of one mandatory parameter (max-age) and two optional parameters (includeSubDomains and preload), separated by semicolons:
 
-**max-age**
-
+**max-age**\
 Indicates how long user agents will redirect to HTTPS, in seconds.\
-****Must be set to a minimum of six months (15768000), but longer periods such as two years (63072000) are recommended. Note that once this value is set, the site must continue to support HTTPS until the expiry time has been reached.
+Must be set to a minimum of six months (15768000), but longer periods such as two years (63072000) are recommended. Note that once this value is set, the site must continue to support HTTPS until the expiry time has been reached.
 
-**includeSubDomains**
-
+**includeSubDomains**\
 Notifies the browser that all subdomains of the current origin should also be upgraded via HSTS. For example, setting “includeSubDomains” on “domain.example.com” will also set it on “host1.domain.example.com” and “host2.domain.example.com”. Extreme care is needed when setting the “includeSubDomains” flag, as it could disable sites on subdomains that don’t yet have HTTPS enabled.
 
-**preload**
-
+**preload**\
 Allows the website to be included in the [HSTS preload list](https://hstspreload.org/), upon submission. As a result, web browsers will do HTTPS upgrades to the site without ever having to receive the initial HSTS header. This prevents downgrade attacks upon first use and is recommended for all high risk websites. Note that being included in the HSTS preload list requires that includeSubDomains also be set.
 
 ### Redirections
@@ -124,15 +121,15 @@ Note that disabling inline JavaScript means that all JavaScript must be loaded f
 
 #### Example
 
-{% code overflow="wrap" %}
+<!-- {% code overflow="wrap" %} -->
 ```
 default-src 'self' https: data: 'unsafe-inline' 'unsafe-eval'; connect-src 'self' https: *.custom-domain.com https://custom-url.com; image-src 'self' *.googleusercontent.com
 ```
-{% endcode %}
+<!-- {% endcode %} -->
 
-{% hint style="info" %}
-You can use the [CSP evaluator tool from Google](https://csp-evaluator.withgoogle.com/) to validate your CSP header configuration.
-{% endhint %}
+<!-- {% hint style="info" %} -->
+>☝️ You can use the [CSP evaluator tool from Google](https://csp-evaluator.withgoogle.com/) to validate your CSP header configuration.
+<!-- {% endhint %} -->
 
 ### Cross-origin Resource Sharing
 
@@ -276,6 +273,11 @@ Disable any headers that expose information about used infrastructure & software
 * Nginx: set `server_tokens` to `off`
 * Express.js: add [helmet](https://helmetjs.github.io/) (or implement similar behavior) to hide `X-Powered-By` headers and configure a decent set of default http headers
 
+### Robots.txt
+
+`robots.txt` is a text file placed within the root directory of a site that tells robots (such as indexers employed by search engines) how to behave, by instructing them not to crawl certain paths on the website. This is particularly useful for reducing load on your website through disabling the crawling of automatically generated content. It can also be helpful for preventing the pollution of search results, for resources that don’t benefit from being searchable.
+
+Sites may optionally use `robots.txt`, but should only use it for these purposes. It should not be used as a way to prevent the disclosure of private information or to hide portions of a website. Although this does prevent these sites from appearing in search engines, it does not prevent its discovery from attackers, as robots.txt is frequently used for reconnaissance.
 
 
 ## Cookies
@@ -312,33 +314,6 @@ All [cookies](https://infosec.mozilla.org/guidelines/web\_security#cookies) shou
 
 ---
 
-# Infrastructure
-
-## Contribute.json
-
-`contribute.json` is a text file placed within the root directory of a website that describes what it is, where its source exists, what technologies it uses, and how to reach support and contribute.
-
-Its existence can greatly speed up the process of bug triage, particularly for smaller websites with just a handful of maintainers. It further assists security researchers to find testable websites and instructs them on where to file their bugs against.&#x20;
-
-Required subkeys include name, description, bugs, participate (particularly irc and irc-contacts), and urls.
-
-[https://infosec.mozilla.org/guidelines/web\_security#contributejson ](https://infosec.mozilla.org/guidelines/web\_security#contributejson)
-
-
-
-## Robots.txt
-
-`robots.txt` is a text file placed within the root directory of a site that tells robots (such as indexers employed by search engines) how to behave, by instructing them not to crawl certain paths on the website. This is particularly useful for reducing load on your website through disabling the crawling of automatically generated content. It can also be helpful for preventing the pollution of search results, for resources that don’t benefit from being searchable.
-
-Sites may optionally use `robots.txt`, but should only use it for these purposes. It should not be used as a way to prevent the disclosure of private information or to hide portions of a website. Although this does prevent these sites from appearing in search engines, it does not prevent its discovery from attackers, as robots.txt is frequently used for reconnaissance.
-
-[https://infosec.mozilla.org/guidelines/web\_security#robotstxt](https://infosec.mozilla.org/guidelines/web\_security#robotstxt)
-
-[
-](https://infosec.mozilla.org/guidelines/web\_security#robotstxt)Docker -> file per omgeving instellen -> niet mee in container, via ingress configureren
-
----
-
 # Mobile app development
 
 Security issues are no different in the case of mobile applications—wherein the application is downloaded from the Internet (e.g., Apple Store or Google Play Store) and installed in the user’s device. Similar to web applications that are exposed on the Internet, mobile applications that are installed in BYOD devices are entry points to the enterprise network.
@@ -350,33 +325,29 @@ Installed mobile applications, if not protected appropriately, can be reverse en
 * Modify the code to change application behavior
 * Inject malicious code
 
-https://www.apterainc.com/blog/mobile-app-security-a-minimum-baseline/  https://www.isaca.org/resources/isaca-journal/issues/2017/volume-3/safeguarding-mobile-applications-with-secure-development-life-cycle-approach https://security.googleblog.com/2021/04/a-new-standard-for-mobile-app-security.html https://capacitorjs.com/docs/guides/security
-
 ## Best practices
 
-### **Do not persist sensitive data**
+### Do not persist sensitive data
 
 Avoid persisting sensitive data to the device, to avoid memory scraping and other reverse engineering risks. Instead, prefer retrieval of private data on-demand, thus reducing the lifetime of the sensitive information on the device. To take this a step further and protect the in-memory data, you can leverage libraries like SecureString, Obfuscator, or Android NDK to encode your strings and enforce that the data can only be accessed when the device is unlocked using biometric authentication.
 
 If this approach is not possible or user experience dictates some sort of secure persistence, our recommendation would be to encrypt the sensitive data using a tool like Facebook Conceal and store the decryption key in the operating system’s secure credential store.
 
-[**https://developer.apple.com/documentation/security/ksecattraccessiblewhenpasscodesetthisdeviceonly**](https://developer.apple.com/documentation/security/ksecattraccessiblewhenpasscodesetthisdeviceonly)****
-
 ### Omit sensitive data from logging
 
 Disable any local logging commands that display sensitive data during a release build as these entries are easily retrieved using a binary file reader after a device sync. Custom app telemetry logging via App Center / Firebase / Crashlytics that includes sensitive data should never be allowed because you’re essentially handing that information over to a third party.
 
-### **Obfuscate source code**
+### Obfuscate source code
 
 When working cross-platform, (depending on the platform) the JavaScript code is likely not obfuscated in any way, which means the application’s code can easily be extracted from the installed .ipa or .apk file.
 
 Obfuscating the source code is not seen as a substantial security measure, but will make reverse engineering the code far more difficult.
 
-### **Secure all communication**
+### Secure all communication
 
 Ensure that all connections between the mobile applications and the back-end servers are performed using SSL. SSL certificate check is enforced by the client application to safeguard against interception and Man-in-the-middle (MitM) attacks.
 
-### **Third-party inventory**
+### Third-party inventory
 
 It is recommended to create an inventory of open-source and third-party libraries that are used in the application that is being developed and retain the inventory as part of the development artifacts. Because open source comes from multiple parties and is introduced in the application code by developers from in-house and/or outsourced partners, it is essential that the inventory tracks the open-source component in the code and determines if these components are affected by known vulnerabilities.
 
