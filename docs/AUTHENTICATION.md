@@ -44,7 +44,7 @@ Depending on the context, a different flow will be used to authenticate a user o
 
 ### User authentication
 
-For user authentication, the Authorization Code Flow should be preferred. PKCE tokens should be implemented unless technical restrictions prevent their use.
+For user authentication, the [Authorization Code Flow](https://tools.ietf.org/html/rfc6749#section-4.1) should be preferred. [PKCE tokens](https://www.rfc-editor.org/rfc/rfc7636) should be implemented unless technical restrictions prevent their use.
 
 The Authorization Code Flow (with PKCE) can be visualized as such:
 
@@ -69,7 +69,7 @@ In a mobile context, a setup without BFF is possible. Secure device storage can 
 
 ### M2M authentication
 
-When authenticating in a context without users, the Client Credentials Flow should be preferred:
+When authenticating in a context without users, the [Client Credentials Flow](https://tools.ietf.org/html/rfc6749#section-4.4) should be preferred:
 
 ![Client Credentials Flow visualization](../assets/flow--client-credentials.jpg "Client Credentials Flow")
 
@@ -82,3 +82,25 @@ From left to right, we can identify the key entities:
 In a typical setup, communication between service providers is pretty straightforward:
 
 ![Client Credentials Flow in setup with 2 service provicers visualization](../assets/arc--client-credentials.jpg "Client Credentials Flow setup")
+
+### Additional authentication flows
+
+Other authentication flows are allowed, depending on the specific requirements.
+
+#### Hybrid Flow
+
+If secure storage of client secrets is guaranteed, direct access to ID tokens can be allowed using the [Hybrid Flow](https://openid.net/specs/openid-connect-core-1_0.html#HybridFlowAuth). This can be useful if immediate access to user information is needed, but processing is executing over longer periods of time.
+
+The Hybrid flow combines the [Implicit Flow with Form Post](#implicit-flow-with-form-post) (usually for login purposes) with the [Authorization Code Flow](#user-authentication) (to fetch additional resources after authentication has happend).
+
+#### Implicit Flow with Form Post
+
+When working in "classic" web applications (not SPA), the Implicit Flow with Form Post can be used to authenticate using ID tokens instead of access tokens. This flow is not to be confused with the Implicit Grant Flow.
+
+#### Device Authorization Flow
+
+Devices with limited user input capabilities can use the [Device Authorization Flow](https://www.rfc-editor.org/rfc/rfc8628) to enable authentication on a second device.
+
+#### Passwordless Connections
+
+To enable users to authenticate without an account, a passwordless mechanism can be implemented using "one-time passwords" (OTP) based on email address or mobile phone number. The exact specifications are dependent on the IDP solution.
