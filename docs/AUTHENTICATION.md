@@ -13,13 +13,16 @@ At Studio Hyperdrive, we prefer to work following the OAuth2 specification.
 <details>
     <summary>Toggle</summary>
 
-* [Authentication types](#authentication-types)
-* [Authenticating with OAuth2](#authenticating-with-oauth2)
-* [Authentication flows](#authentication-flows)
-    * [User authentication](#user-authentication)
-    * [M2M authentication](#m2m-authentication)
-* [SSH](#ssh)
-* [VPN](#vpn)
+* [Technical specifications](./SECURITY_BASELINE.md)
+* [Authentication](#authentication)
+    * [Authentication types](#authentication-types)
+    * [Authenticating with OAuth2](#authenticating-with-oauth2)
+    * [Authentication flows](#authentication-flows)
+        * [User authentication](#user-authentication)
+        * [M2M authentication](#m2m-authentication)
+    * [SSH](#ssh)
+    * [VPN](#vpn)
+* [Mobile App Development](./MOBILE%20DEVELOPMENT.md)
 
 </details>
 

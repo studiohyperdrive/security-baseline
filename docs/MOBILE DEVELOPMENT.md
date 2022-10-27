@@ -9,6 +9,18 @@ Installed mobile applications, if not protected appropriately, can be reverse en
 * Modify the code to change application behavior
 * Inject malicious code
 
+## Table of Contents
+
+<details>
+    <summary>Toggle</summary>
+
+* [Technical specifications](./SECURITY_BASELINE.md)
+* [Authentication](./AUTHENTICATION.md)
+* [Mobile App Development](#mobile-app-development)
+    * [Best practices](#best-practices)
+
+</details>
+
 ## Best practices
 
 ### Do not persist sensitive data

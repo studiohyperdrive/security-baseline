@@ -33,7 +33,8 @@ Deviating from this baseline is allowed, if valid arguments can be provided, pro
         * [Server information](#server-information)
     * [Cookies](#cookies)
     * [Robots.txt](#robotstxt)
-
+* [Authentication](./AUTHENTICATION.md)
+* [Mobile App Development](./MOBILE%20DEVELOPMENT.md)
 </details>
 
 ---
