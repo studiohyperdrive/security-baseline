@@ -9,7 +9,7 @@ Deviating from this baseline is allowed, if valid arguments can be provided, pro
 <details>
     <summary>Toggle</summary>
 
-* [Technical specifications](#technical-specifications)
+* [Security Baseline](#technical-specifications)
     * [Transport layer security (TLS/SSL)](#transport-layer-security-tlsssl)
         * [HTTPS](#https)
         * [Strict Transport Security](#strict-transport-security)

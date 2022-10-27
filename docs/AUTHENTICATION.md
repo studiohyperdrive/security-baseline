@@ -13,7 +13,7 @@ At Studio Hyperdrive, we prefer to work following the OAuth2 specification.
 <details>
     <summary>Toggle</summary>
 
-* [Technical specifications](./SECURITY_BASELINE.md)
+* [Security Baseline](./SECURITY_BASELINE.md)
 * [Authentication](#authentication)
     * [Authentication types](#authentication-types)
     * [Authenticating with OAuth2](#authenticating-with-oauth2)

@@ -14,7 +14,7 @@ Installed mobile applications, if not protected appropriately, can be reverse en
 <details>
     <summary>Toggle</summary>
 
-* [Technical specifications](./SECURITY_BASELINE.md)
+* [Security Baseline](./SECURITY_BASELINE.md)
 * [Authentication](./AUTHENTICATION.md)
 * [Mobile App Development](#mobile-app-development)
     * [Best practices](#best-practices)
