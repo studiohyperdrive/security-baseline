@@ -45,7 +45,7 @@ Deviating from this baseline is allowed, if valid arguments can be provided, pro
 
 Transport Layer Security provides assurances about the confidentiality, authentication, and integrity of all communications both inside and outside the network. To protect our users and networked systems, the support and use of encrypted communications using TLS is mandatory for all systems.
 
-Various security issues were detected and documented through the years. It is recommended to run TLSv1.0, 1.1 or 1.2 and fully disable SSLv2 and SSLv3 that have protocol weaknesses. TSL 1.3 can be used [if supported by the targeted platforms](https://caniuse.com/?search=TLS%201.3), and should be preferred if all target platforms [support this version](https://wiki.mozilla.org/Security/Server\_Side\_TLS#Modern\_compatibility).
+Various security issues were detected and documented through the years. It is recommended to run TLS 1.2 or 1.3 and fully disable SSLv2, SSLv3, TLS 1.0 and TLS 1.1 that have protocol weaknesses. TSL 1.3 can be used [if supported by the targeted platforms](https://caniuse.com/?search=TLS%201.3), and should be preferred if all target platforms [support this version](https://wiki.mozilla.org/Security/Server\_Side\_TLS#Modern\_compatibility).
 
 If security measures are properly implemented there is no additional security risk in using v1.2.
 
