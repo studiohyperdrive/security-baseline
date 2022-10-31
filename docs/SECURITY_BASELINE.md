@@ -105,7 +105,7 @@ Note that disabling inline JavaScript means that all JavaScript must be loaded f
   `default-src 'none'; img-src 'self'; script-src 'self'; style-src 'self’` \
   and then add in sources as revealed during testing.
 * In lieu of the preferred HTTP header, pages can instead include a tag:\
-  `<meta http-equiv=“Content-Security-Policy” content=“…”>`\
+  `<meta http-equiv="Content-Security-Policy" content="…">`\
   If they do, it should be the first tag that appears inside the `<head>`.
 * Care needs to be taken with data: URIs, as these are unsafe inside `script-src` and `object-src` (or inherited from `default-src`).
 * Similarly, the use of `script-src 'self'` can be unsafe for sites with JSONP endpoints. These sites should use a `script-src` that includes the path to their JavaScript source folder(s).
