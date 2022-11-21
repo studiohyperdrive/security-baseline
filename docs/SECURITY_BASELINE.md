@@ -252,6 +252,20 @@ Note that CDNs must support the Cross Origin Resource Sharing (CORS) standard by
 
 ## Sensitive information
 
+### Storing credentials
+
+Sensitive information, such as user or server credentials, should always be stored securely in a dedicated Key Management System (KMS). Ensure to use a trusted KMS provider, such as:
+
+* [Azure Key Vault](https://learn.microsoft.com/en-us/azure/key-vault/)
+* [AWS KMS](https://aws.amazon.com/kms/)
+* [GCP Cloud KMS](https://cloud.google.com/kms/docs/resource-hierarchy#key_rings)
+* [Hashicorp Vault](https://www.vaultproject.io/)
+
+Avoid storing user credentials with the application data, rather preferring a third-party solution that is focused on user identity and access management.
+
+Credentials should never be stored in the codebase, appear in logs or made accessible in any other way that is not secured by a trusted provider.
+
+
 ### User information
 
 Prevent storing and sending sensitive information as plain text, [even on a secure connection](https://owasp.org/www-project-top-ten/2017/A3\_2017-Sensitive\_Data\_Exposure.html). Identity information should always be transferred in an encrypted format (e.g. as part of the JWT token) and should never be cacheable.
